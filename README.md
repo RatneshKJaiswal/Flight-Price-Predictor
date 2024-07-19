@@ -1,6 +1,7 @@
 # Project: Flight Price Prediction System with Machine Learning
 
 This project aims to develop a web application that leverages machine learning to predict flight prices. Users can input their desired travel details and receive an estimated cost for their trip, enabling informed decision-making when booking flights.
+
 Project Link : https://flight-price-predictor-m5k2.onrender.com/
 
 # System Architecture
