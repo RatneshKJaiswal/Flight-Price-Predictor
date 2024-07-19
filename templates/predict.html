@@ -1,115 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Predict</title>
-</head>
-<body>
-{% extends "layout.html" %}
 
-{% block content %}
-<form action="" method="post">
-    {{ form.hidden_tag() }}
-    <div>
-        {{ form.airline.label }}
-        {{ form.airline }}
-        {% if form.airline.errors %}
-            {% for error in form.airline.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.date_of_journey.label }}
-        {{ form.date_of_journey }}
-        {% if form.date_of_journey.errors %}
-            {% for error in form.date_of_journey.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.source.label }}
-        {{ form.source }}
-        {% if form.source.errors %}
-            {% for error in form.source.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.destination.label }}
-        {{ form.destination }}
-        {% if form.destination.errors %}
-            {% for error in form.destination.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.dep_time.label }}
-        {{ form.dep_time }}
-        {% if form.dep_time.errors %}
-            {% for error in form.dep_time.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.arrival_time.label }}
-        {{ form.arrival_time }}
-        {% if form.arrival_time.errors %}
-            {% for error in form.arrival_time.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.duration.label }}
-        {{ form.duration }}
-        {% if form.duration.errors %}
-            {% for error in form.duration.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.total_stops.label }}
-        {{ form.total_stops }}
-        {% if form.total_stops.errors %}
-            {% for error in form.total_stops.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.additional_info.label }}
-        {{ form.additional_info }}
-        {% if form.additional_info.errors %}
-            {% for error in form.additional_info.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>{{ form.submit() }}</div>
-    <br>
-    <div>
-        {{ output }}
-    </div>
-    <br>
-    <div>
-        <p>Redirect to Homepage? <a href="{{ url_for('home') }}">Home</a></p>
-    </div>
-</form>
-{% endblock content %}
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgb(35, 35, 35);
+}
+.container {
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  background: rgb(35, 35, 35);
+  padding: 25px;
+  border-radius: 8px;
+}
+.container header {
+  font-size: 1.5rem;
+  color: #c4c2c2;
+  font-weight: 500;
+  text-align: center;
+}
+.container .form {
+  margin-top: 30px;
+}
+.form .input-box {
+  width: 100%;
+  margin-top: 20px;
+}
+.input-box label {
+  color: #c4c2c2;
+}
+.form :where(.input-box input, .select-box) {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  color: #c4c2c2;
+  background: #363535;
+  margin-top: 8px;
+  /* border: 1px solid #ddd; */
+  border:none;
+  border-radius: 12px;
+  padding: 0 15px;
+}
+.input-box input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.form .column {
+  display: flex;
+  column-gap: 15px;
+}
+.select-box select {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  color: #c4c2c2;
+  background: #363535;
+  font-size: 1rem;
+}
+.form button {
+  height: 55px;
+  width: 100%;
+  color: #c4c2c2;
+
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  background: #363535;
+}
+.form button:hover {
+  background: rgb(88, 56, 250);
+}
+.pred {
+    display: flex;
+    column-gap: 15px;
+    margin-top: 30px;
+}
+.pred header{
+    color: white;
+    font-size: 1.3rem;
+    text-align: center;
+    width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  .form .column {
+    flex-wrap: wrap;
+  }
+  .form :where(.gender-option, .gender) {
+    row-gap: 15px;
+  }
+}
+    </style>
+</head>
+
+<body>
+    <section class="container">
+        <header>Flight Price Predictor</header>
+        <form action="/predict" class="form" id="predict" method="post">
+            <!-- <div class="input-box address"> -->
+                <div class="column">
+                    <div class="input-box">
+                        <label>Airline</label>
+                        <div class="select-box">
+                            <select form="predict" name="airline" required>
+                                <option hidden>Airline</option>
+                                <option value="SpiceJet">SpiceJet</option>
+                                <option value="AirAsia">AirAsia</option>
+                                <option value="Vistara">Vistara</option>
+                                <option value="GO_FIRST">GO_FIRST</option>
+                                <option value="Indigo">Indigo</option>
+                                <option value="Air_India">Air_India</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <label>Source City</label>
+                        <div class="select-box">
+                            <select form="predict" name="source_city" required>
+                                <option hidden>Source</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Kolkata">Kolkata</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Chennai">Chennai</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            <!-- </div> -->
+
+            <!-- <div class="input-box address"> -->
+                <div class="column">
+                    <div class="input-box">
+                        <label>Departure Time</label>
+                        <div class="select-box">
+                            <select form="predict" name="departure_time" required>
+                                <option hidden>Departure Time</option>
+                                <option value="Evening">Evening</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Afternoon">Afternoon</option>
+                                <option value="Night">Night</option>
+                                <option value="Late_Night">Late_Night</option>
+                                <option value="Early_Morning">Early_Morning</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <label>Arrival Time</label>
+                        <div class="select-box">
+                            <select form="predict" name="arrival_time" required>
+                                <option hidden>Arrival Time</option>
+                                <option value="Evening">Evening</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Afternoon">Afternoon</option>
+                                <option value="Night">Night</option>
+                                <option value="Late_Night">Late_Night</option>
+                                <option value="Early_Morning">Early_Morning</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            <!-- </div> -->
+
+            <!-- <div class="input-box address"> -->
+                <div class="column">
+                    <div class="input-box">
+                        <label>Destination</label>
+                        <div class="select-box">
+                            <select form="predict" name="destination_city" required>
+                                <option hidden>Destination</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Kolkata">Kolkata</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Chennai">Chennai</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <label>Category</label>
+                        <div class="select-box">
+                            <select form="predict" name="category" required>
+                                <option hidden>Class</option>
+                                <option value="Business">Business</option>
+                                <option value="Economy">Economy</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            <!-- </div> -->
+
+            <div class="column">
+                <div class="input-box">
+                    <label>Duration (Hours)</label>
+                    <input name="duration" type="number" placeholder="Duration" required />
+                </div>
+                <div class="input-box">
+                    <label>Days Left</label>
+                    <input type="number" placeholder="Days Left" name="days_left" required />
+                </div>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+        <div class="pred">
+            <header>{{pred}}</header>
+        </div>
+    </section>
+     
 </body>
+
 </html>
