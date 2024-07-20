@@ -41,4 +41,5 @@ def predict():
     message = f"Predicted Price : {prediction:,.0f} INR"
     return render_template('predict.html', pred=message)
 
-
+if __name__ == '__main__':
+    app.run(debug=True)
