@@ -1,52 +1,93 @@
-# Project: Flight Price Prediction System with Machine Learning
+# ✈️ Flight Price Prediction System with Machine Learning
 
-This project aims to develop a web application that leverages machine learning to predict flight prices. Users can input their desired travel details and receive an estimated cost for their trip, enabling informed decision-making when booking flights.
+[![Application Status](https://img.shields.io/website?url=https%3A%2F%2Fflight-price-predictor-m5k2.onrender.com%2F)](https://flight-price-predictor-m5k2.onrender.com/)
 
-Project Link : https://flight-price-predictor-m5k2.onrender.com/
+This project is a web-based application designed to predict flight prices based on user-provided travel details. By utilizing a machine learning model trained on historical flight data, this system empowers users to make cost-effective booking decisions by providing estimated prices for flights.
 
-# System Architecture
+🌐 **Project Link**: [Flight Price Predictor](https://flight-price-predictor-m5k2.onrender.com/)
 
-The system will consist of two main components:
+---
 
-* Machine Learning Model:
+## 🛠️ System Architecture
 
-  * Data Collection: Historical flight data will be collected from Kaggle's Public Datasets. This data will include attributes like source city, destination city, airline, duration, number of stops, and price.
-  * Data Preprocessing: The collected data will be cleaned and preprocessed. This may involve handling missing values, converting categorical variables to numerical representations, and feature scaling.
-  * Model Training: A Random Forest algorithm will be trained on the preprocessed data. Random Forest is a robust regression technique suitable for capturing complex relationships within the data. The model will learn to map the input features (source, destination, etc.) to the target variable (flight price).
-  * Model Evaluation: The trained model's performance will be evaluated using metrics like mean squared error (MSE) or R-squared. This ensures the model's accuracy in predicting flight prices.
+The system architecture is divided into two main components: the **Machine Learning Model** and the **Web Application**.
 
-* Web Application:
+### 1. 🧠 Machine Learning Model
 
-  * Flask Framework: The web application will be developed using the Flask framework in Python. Flask provides a lightweight and flexible foundation for building user interfaces.
-  * User Interface (UI): The UI will allow users to enter their travel details, such as source city, destination city, travel date, preferred airline (optional), and desired number of stops (optional).
-  * API Integration: The UI will integrate with the trained machine learning model through an API. When a user submits their travel details, the information will be sent to the API.
-  * Price Prediction: The API will receive the user input, process it according to the model's requirements, and generate a predicted flight price using the trained Random Forest model.
-  * Price Display: The predicted flight price will be displayed back on the user interface, along with relevant disclaimers about the prediction's nature (estimation).
+The core of the prediction system is a machine learning model that estimates flight prices based on various travel-related factors.
 
-# Implementation Steps
+- **Data Collection**: 
+  - 📊 Data from Kaggle, including attributes like:
+    - Source and Destination Cities
+    - Airline
+    - Duration
+    - Number of Stops
+    - Ticket Price
+- **Data Preprocessing**: 
+  - 🧹 The data undergoes cleaning and preprocessing:
+    - Handling missing values
+    - Encoding categorical variables
+    - Scaling features to improve model performance
+- **Model Training**: 
+  - 🌲 **Random Forest Regression** model is trained on the dataset to accurately predict flight prices.
+- **Model Evaluation**:
+  - 🧮 Metrics such as **Mean Squared Error (MSE)** and **R-Squared** are used to evaluate accuracy and performance.
 
-  * Data Acquisition: Gather historical flight data from Kaggle.
-  * Data Preprocessing: Clean and prepare the data for model training.
-  * Model Development: Train a Random Forest regression model on the preprocessed data.
-  * Model Evaluation: Evaluate the model's performance using appropriate metrics.
-  * API Development: Develop a Flask API to expose the trained model for price predictions.
-  * Web Application Development: Build a user-friendly web interface using Flask to interact with the API.
-  * Deployment: Deploy the web application to a suitable hosting platform.
+### 2. 🌐 Web Application
 
-# Benefits
-This project offers several advantages:
+The user-facing application is built with the **Flask** framework, making it easy for users to interact with the model.
 
-  * Cost Savings: Users can leverage price predictions to plan their trips more strategically and potentially save money on flights.
-  * Informed Decisions: Early insights into flight prices allow users to compare options and book during cost-effective periods.
-  * Travel Planning Optimization: The system aids travel planning by providing a reference point for budgeting and decision-making.
+- **Flask Framework**: Provides a lightweight backend.
+- **User Interface (UI)**:
+  - ✍️ Users can input:
+    - Source City, Destination City
+    - Travel Date, Preferred Airline (optional)
+    - Number of Stops (optional)
+- **API Integration**:
+  - 🔗 The Flask API connects the frontend with the trained model for real-time predictions.
+- **Price Prediction and Display**:
+  - 💵 The API returns a predicted price based on input details, displayed alongside a disclaimer.
 
-# Tools and Technologies
-* Programming Language: Python
-* Machine Learning Library: scikit-learn
-* Web Framework: Flask
-* Additional Libraries: Pandas, NumPy, Matplotlib, Seaborn
-* Web API : Render
+---
 
-# Conclusion
+## 📝 Implementation Steps
 
-This machine learning-based flight price prediction system empowers users with valuable information to navigate the dynamic world of flight pricing. By leveraging the power of Random Forest algorithms and a user-friendly web interface, this project can enhance travel planning and potentially lead to cost savings.
+1. **Data Acquisition**:
+   - 📥 Gather historical flight data from Kaggle.
+
+2. **Data Preprocessing**:
+   - 🧹 Clean and transform data, encode categorical variables, and scale numerical features.
+
+3. **Model Development**:
+   - 🤖 Train a **Random Forest Regression** model on the dataset.
+
+4. **Model Evaluation**:
+   - 🧮 Evaluate the model using MSE and R-Squared metrics.
+
+5. **API Development**:
+   - 🔗 Build a Flask API to serve model predictions to the web app.
+
+6. **Web Application Development**:
+   - 🖥️ Create a user-friendly UI with Flask for interaction.
+
+7. **Deployment**:
+   - 🚀 Deploy on a hosting platform (e.g., Render).
+
+---
+
+## 🌟 Benefits
+
+- **Cost Savings** 💰: Allows users to make strategic booking choices.
+- **Informed Decisions** 🧭: Offers users a chance to compare options and book cost-effectively.
+- **Travel Planning Optimization** 📅: Supports users with budget references for better planning.
+
+---
+
+## 🔧 Tools and Technologies
+
+- **Programming Language**: Python 🐍
+- **Machine Learning Library**: Scikit-learn 🤖
+- **Web Framework**: Flask 🌐
+- **Data Processing**: Pandas, NumPy
+- **Visualization**: Matplotlib 📊, Seaborn 📉
+- **Deployment**: Render 🛠️
